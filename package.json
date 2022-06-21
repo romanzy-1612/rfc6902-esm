@@ -20,7 +20,8 @@
     "js-yaml": "4.0.0",
     "nyc": "^15.1.0",
     "rollup": "^2.41.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.7.4",
+    "rimraf": "^3.0.2"
   },
   "scripts": {
     "prepare": "tsc",
@@ -28,6 +29,7 @@
     "test": "nyc ava",
     "posttest": "nyc report --reporter=text-lcov | coveralls || true",
     "dist": "tsc -t ES2015 -m es2015 && rollup index.js --output.format umd --name rfc6902 --output.file dist/rfc6902.js && closure-compiler dist/rfc6902.js > dist/rfc6902.min.js",
-    "clean": "tsc -b . test --clean"
+    "clean": "tsc -b . test --clean",
+    "build-esm": "rimraf dist-esm && tsc --p tsconfig.esm.json"
   }
 }
